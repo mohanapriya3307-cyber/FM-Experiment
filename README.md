@@ -65,27 +65,57 @@ MODEL GRAPH:
 
 
 Program
+```
+Am = 11;        // Message amplitude
+Fm = 490;         // Message frequency (Hz)
+B  = 4.5;         // Modulation index
+Ac = 22;          // Carrier amplitude
+Fc = 4900;        // Carrier frequency (Hz)
+Fs = 95000;       // Sampling frequency
+T  = 0:1/Fs:2/Fm; // Time vector (two cycles of message)
 
+// Message signal
+em = Am * cos(2*%pi*Fm*T);
+subplot(3,1,1);
+plot(T, em);
+xtitle("Message Signal");
+xgrid();
+
+// Carrier signal
+ec = Ac * cos(2*%pi*Fc*T);
+subplot(3,1,2);
+plot(T, ec);
+xtitle("Carrier Signal");
+xgrid();
+// FM signal
+efm = Ac * cos( (2*%pi*Fc*T) + (B * sin(2*%pi*Fm*T)) );
+subplot(3,1,3);
+plot(T, efm);
+xtitle("FM Signal");
+xgrid();
+```
 
 Output Waveform
 
+<img width="765" height="725" alt="image" src="https://github.com/user-attachments/assets/59ad2bb3-fcb4-4e22-9bb7-fe97ca15b560" />
 
 
 Tabulation
 
+<img width="911" height="624" alt="image" src="https://github.com/user-attachments/assets/8c3ed3a1-461a-4610-ab72-c0db10a17271" />
 
 
 Calculation
+      
 
 
+Frequency Deviation Practical = fmax-fc
+                              = 1996
 
-Frequency Deviation Practical = 
+Modulation Index Practical	= 4.5
 
-Modulation Index Practical	= 
-
-Modulation Index Theoretical	=
-
-
+Modulation Index Theoretical	= 1996/490
+                             =4.07
 
 RESULT:
 
